@@ -1,0 +1,75 @@
+<div class="detail-page">
+  <a routerLink="/cards" class="back-link">‹ Torna indietro</a>
+
+  <section *ngIf="loading" class="status">
+    Caricamento carta...
+  </section>
+
+  <section *ngIf="errorMessage" class="status error">
+    {{ errorMessage }}
+  </section>
+
+  <section *ngIf="card && !loading" class="detail-content">
+    <div class="left">
+      <img
+        [src]="card.images?.large || card.images?.small"
+        [alt]="card.name"
+      />
+    </div>
+
+    <div class="right">
+      <h1>{{ card.name }}</h1>
+      <p *ngIf="card.supertype">{{ card.supertype }} <span *ngIf="card.subtypes?.length">- {{ card.subtypes?.join(', ') }}</span></p>
+      <p *ngIf="card.types?.length">Tipo: {{ card.types?.join(', ') }}</p>
+      <p *ngIf="card.hp">HP: {{ card.hp }}</p>
+      <p *ngIf="card.rarity">Rarità: {{ card.rarity }}</p>
+
+      <p *ngIf="card.set">
+        Set: {{ card.set.name }}
+        <span *ngIf="card.set.releaseDate"> ({{ card.set.releaseDate }})</span>
+      </p>
+
+      <button class="favorite-btn" (click)="toggleFavorite()">
+        <span *ngIf="isFavorite()">★ Rimuovi dai preferiti</span>
+        <span *ngIf="!isFavorite()">☆ Aggiungi ai preferiti</span>
+      </button>
+
+      <section class="attacks" *ngIf="card.attacks?.length">
+        <h2>Attacchi</h2>
+        <div *ngFor="let atk of card.attacks" class="attack-row">
+          <div>
+            <strong>{{ atk.name }}</strong>
+            <div *ngIf="atk.text">{{ atk.text }}</div>
+          </div>
+          <div class="attack-damage">
+            {{ atk.damage }}
+          </div>
+        </div>
+      </section>
+
+      <section class="prices">
+        <h2>Prezzi &amp; Cardmarket</h2>
+
+        <ng-container *ngIf="getMainPrice() as price; else noPrice">
+          <p>
+            Prezzo indicativo: <strong>{{ price | number:'1.2-2' }} €</strong>
+          </p>
+        </ng-container>
+
+        <ng-template #noPrice>
+          <p>Prezzi non disponibili per questa carta.</p>
+        </ng-template>
+
+        <a
+          *ngIf="getCardmarketUrl() as url"
+          class="cardmarket-link"
+          [href]="url"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          🔗 Vai su Cardmarket
+        </a>
+      </section>
+    </div>
+  </section>
+</div>

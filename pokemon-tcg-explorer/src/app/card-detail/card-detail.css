@@ -1,0 +1,72 @@
+.detail-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.back-link {
+  text-decoration: none;
+  color: #1d3557;
+  font-size: 0.9rem;
+}
+
+.status {
+  padding: 0.75rem;
+  background: #edf2ff;
+  border-radius: 6px;
+}
+
+.status.error {
+  background: #ffe3e3;
+}
+
+.detail-content {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+}
+
+.left img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.right h1 {
+  margin-top: 0;
+}
+
+.favorite-btn {
+  margin: 0.5rem 0 1rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  border: 1px solid #e76f51;
+  background: #e76f51;
+  color: white;
+  cursor: pointer;
+}
+
+.attacks {
+  margin-top: 1rem;
+}
+
+.attack-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.prices {
+  margin-top: 1.2rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid #ddd;
+}
+
+.cardmarket-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  text-decoration: none;
+  color: #1d3557;
+  font-weight: 600;
+}

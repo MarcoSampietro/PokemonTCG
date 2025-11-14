@@ -1,0 +1,12 @@
+{
+  "/api": {
+    "target": "https://api.pokemontcg.io/v2",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
+

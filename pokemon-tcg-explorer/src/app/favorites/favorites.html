@@ -1,0 +1,21 @@
+<div class="favorites-page">
+  <h1>Preferiti</h1>
+
+  <section *ngIf="favorites.length === 0" class="status">
+    Nessuna carta salvata. Aggiungine dalla schermata principale!
+  </section>
+
+  <section class="cards-grid" *ngIf="favorites.length > 0">
+    <article class="card-item" *ngFor="let card of favorites">
+      <a [routerLink]="['/cards', card.id]">
+        <img
+          [src]="card.images?.small"
+          [alt]="card.name"
+        />
+        <h3>{{ card.name }}</h3>
+        <p *ngIf="card.hp">HP: {{ card.hp }}</p>
+      </a>
+      <button (click)="remove(card)">Rimuovi ☆</button>
+    </article>
+  </section>
+</div>
